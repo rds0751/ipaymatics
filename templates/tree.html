@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('/static/images/bg_1.jpg')">
+	<div class="container">
+		<div class="row align-items-end">
+			<div class="col-lg-7">
+				<h2 class="mb-0">My Network</h2>
+				<p></p>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="custom-breadcrumns border-bottom">
+	<div class="container">
+		<a href="index.html">Home</a>
+		<span class="mx-3 icon-keyboard_arrow_right"></span>
+		<span class="current">My Tree</span>
+	</div>
+</div>
+
+<div class="site-section">
+	
+							  
+	
+	<div class="container course-1-item">
+			<h2  style="font-size:35px;color: white;float:left;" class="badge bg-primary xl">Total Networks: {{wallet}}</h2>
+	
+		<h2  style="font-size:35px;color: white;float: right;" class="badge bg-primary xl">Total Amount in Savings Account: {{amt}}</h2>
+
+		<br><br><br>
+		<div class="category"><h3 align="center">{{user.username}}</h3></div> 
+		<div class="row" align="center">		
+			{% for r in data %}
+
+			{% if user.username == r.refer %}
+			<div class="col-lg-6 col-md-6 mb-6">
+				<div class="course-1-item">
+					<figure class="thumnail">
+						<a href="course-single.html"><img src="{% static 'images/arrow123.png' %}" alt="Image" class="img-fluid"></a>
+						<div class="category"><h3>{{r.username}}</h3></div>
+						<div class="row">
+							{% for g in data %}
+							{% if r.username == g.refer %} 
+							<div class="col-lg-6 col-md-6 mb-6">
+								<div class="course-1-item">
+									<figure class="thumnail">
+										<a href="course-single.html"><img src="{% static 'images/arrow123.png' %}" alt="Image" class="img-fluid"></a>
+										<div class="category"><h3>{{g.username}} </h3></div>  
+										
+							<script type="text/javascript">
+								document.getElementById('demo').innerHTML={{ forloop.counter}};
+							</script>
+									</figure>
+								</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+
+					</figure>
+				</div>
+			</div>
+
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+

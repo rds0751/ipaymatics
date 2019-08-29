@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br><br><br>
+
+        <div class="custom-breadcrumns border-bottom">
+      <div class="container">
+        <a href="index.html">Home</a>
+        <span class="mx-3 icon-keyboard_arrow_right"></span>
+        <span class="current">Login</span>
+      </div>
+    </div>
+
+    <div class="site-section">
+        <div class="container">
+
+
+            <div class="row justify-content-center">
+                <div class="col-md-5" align="center">
+                    <form method="POST">
+                        {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            {{ form.username.label }}
+                            {{ form.username }}
+                        </div>
+                        <br><br>
+                        <div class="col-md-12 form-group">
+                            {{ form.password.label }}
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="submit" value="Log In" class="btn btn-primary btn-lg px-5">
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            
+
+          
+        </div>
+    </div>
+
+{% endblock %}

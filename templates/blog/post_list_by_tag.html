@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ tag.name }} &middot; Tags &middot; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+
+  {{ block.super }}
+  <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
+  <li>Tags</li>
+  <li class="active">{{ tag.name }}</li>
+{% endblock %}
+
+{% block content %}
+<br><br><br><br><br><br><br>
+  {% for post in posts %}
+  <div class="row">
+  	<div class="col-2">
+  		
+  	</div>
+  	<div class="col-2">
+    <div class="post">
+      <h2><a href="{% url 'blog:post-detail' slug=post.slug %}">{{ post.title }}</a></h2>
+
+      <div class="date">
+        <span class="glyphicon glyphicon-time"></span>
+        {{ post.published_date|date:"F j, Y" }}
+      </div>
+
+      <p>{{ post.snippet|safe }}</p>
+
+      <a href="{% url 'blog:post-detail' slug=post.slug %}">Read more &rarr;</a>
+    </div>
+</div>
+</div>
+  {% endfor %}
+
+  {% include 'includes/pagination.html' with url_name='blog:post-list-by-tag' url_args=tag.slug %}
+{% endblock content %}
