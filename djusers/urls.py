@@ -4,7 +4,6 @@ from django.urls import path,include
 from .views import home,tree_view,index
 
 from accounts.views import login_view, register_view, logout_view
-from blog.urls import urlpatterns as blog_urls
 
 urlpatterns = [
 path('admin/', admin.site.urls),
@@ -12,6 +11,7 @@ path('home', home),
 path('', index),
 path('tree/', tree_view, name='tree'),
 path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
+path('order/', include(('order.urls', 'order'), namespace='order')),
 
 path('contact/', include('contact.urls')),
 path('accounts/login/', login_view),
