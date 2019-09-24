@@ -43,3 +43,6 @@ class PayUForm(forms.Form):
         cleaned_data = super(PayUForm, self).clean()
         cleaned_data['hash'] = generate_hash(cleaned_data)
         return cleaned_data
+
+class HashForm(forms.Form):
+        hash = forms.CharField(required = False)

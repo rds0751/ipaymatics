@@ -28,6 +28,8 @@ def login_view(request):
     return render(request, "login.html", context)
 
 
+
+
 def register_view(request):
     next = request.GET.get('next')
     form = UserRegisterForm(request.POST or None)
@@ -38,9 +40,10 @@ def register_view(request):
         user.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
+        return redirect('refer')
         if next:
             return redirect(next)
-        return redirect('/')
+        return redirect('refer')
 
     context = {
         'form': form,

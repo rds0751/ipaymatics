@@ -20,7 +20,7 @@
 		<span class="current">My Tree</span>
 	</div>
 </div>
-
+{% if data2.account_type == 'earning account' %}
 <div class="site-section">
 	
 							  
@@ -29,6 +29,7 @@
 			<h2  style="font-size:35px;color: white;float:left;" class="badge bg-primary xl">Total Networks: {{wallet}}</h2>
 	
 		<h2  style="font-size:35px;color: white;float: right;" class="badge bg-primary xl">Total Amount in Savings Account: {{amt}}</h2>
+		<h2>{{ data.account_type}}</h2>
 
 		<br><br><br>
 		<div class="category"><h3 align="center">{{user.username}}</h3></div> 
@@ -69,7 +70,9 @@
 		</div>
 	</div>
 </div>
-
+{% else %}
+<h2>{{date.days}} | {{date.months}}</h2>
+{% endif %}
 
 {% endblock %}
 

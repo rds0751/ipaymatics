@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpRequest, Http404
 from django.template import RequestContext
 from django.conf import settings
 from django.shortcuts import reverse
+from payu.utils import generate_hash
 
 from payu.forms import PayUForm
 from order.forms import OrderForm
@@ -22,14 +23,16 @@ def checkout(request):
             initial.update({'key': settings.PAYU_INFO['merchant_key'],
                             'surl': request.build_absolute_uri(reverse('order:success')),
                             'furl': request.build_absolute_uri(reverse('order:success')),
+                            
                             'curl': request.build_absolute_uri(reverse('order:cancel'))})
             # Once you have all the information that you need to submit to payu
             # create a payu_form, validate it and render response using
             # template provided by PayU.
+            initial.update({'hash': generate_hash(initial)})
             payu_form = PayUForm(initial)
+
             if payu_form.is_valid():
-                context = {'form': payu_form,
-                           'action': "%s_payment" % settings.PAYU_INFO['payment_url']}
+                context = {'form': payu_form,'action': "%s" % settings.PAYU_INFO['payment_url']}
                 return render(request, 'payu_form.html', context)
             else:
                 logger.error('Something went wrong! Looks like initial data\
@@ -51,7 +54,7 @@ def success(request):
                            request.POST.get('txnid'))
             return redirect('order.failure')
         else:
-            logger.warning("Payment for order (txnid: %s) succeeded at PayU" %
+            logger.warning("Payment for order (txnid: %s) succeeded at Ipaymatics" %
                            request.POST.get('txnid'))
             return render(request, 'success.html')
     else:

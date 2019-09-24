@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'order',
     ]
 
-PAYU_INFO = {'merchant_key': "0zq6ymZT",
-             'merchant_salt': "xmAM5JYBkc",
-             # for production environment use 'https://secure.payu.in/_payment'
-             'payment_url': 'https://test.payu.in/_payment',
+PAYU_INFO = {'merchant_key': "RfLhqZQ5",
+             'merchant_salt': "R57ivFJigr",
+             'payment_url': 'https://secure.payu.in/_payment'
+             # 'payment_url': 'https://sandboxsecure.payu.in/_payment',
+
 }
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
@@ -146,6 +147,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+MEDIA_URL='/media/'
 
 STATIC_URL = '/static/'
 

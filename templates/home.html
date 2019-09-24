@@ -1,32 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
 
-<body>
+{% block content %}
+<br><br><br><br><br>
 
-    <h1>bc refer bhar yaha</h1>
+<div class="site-section">
+    <div class="container">
 
-						{% block content %}
-						{% if user.is_authenticated %}
-						Hello {{ user.username|upper }}
-						{% else %}
-						<p>You are not logged in</p>
-						<a href="{% url 'login' %}">login</a>
-						{% endif %}
-						{% endblock %}
-    <form method="POST" action="/">
-    	{% csrf_token %}
-    	<input type="text" name="referal" placeholder="referal code">
-    	<input type="hidden" name="user" value="{{user.username}}">
-    	<input type="submit" value="enter">
 
-    </form>
-</body>
+            <h2 align="center" class="display-4" style="font-weight:bolder;padding-bottom:20px;color:#51be78">Create Your Profile Here</h2>
+            <hr>
+        <div class="row justify-content-left">
 
-</html>
+            <div class="col-md-6 col-sm-6"  style="border:solid;border-radius:10px;border-color:#51be78;padding:30px;" >
+
+                <form method="POST" action="/home" >
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+
+                            <input type="text" name="fname" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col-md-12 form-group">
+
+                            <input type="text" name="lname" class="form-control" placeholder="Last name">
+                        </div>
+
+                        <div class="col-md-12 form-group">
+
+                            <select name="account_type" class="form-control" >
+                                <option value="saving account">Saving account</option>
+                                <option value="earning account">Earning account</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label style="float:left;" >&nbsp;&nbsp; Current Address:</label>
+
+                            <textarea name="address1" class="form-control" cols="10" rows="5" placeholder="address1">
+
+                            </textarea>
+                        </div>
+                            <div class="col-md-12 form-group">
+
+                            <label style="float:left;" >&nbsp;&nbsp; Permanant Address:</label>
+                                <textarea name="address2" class="form-control" cols="10" rows="5">
+
+                                </textarea></div>
+                                <div class="col-md-12 form-group">
+
+                                  <input type="text" name="referal" class="form-control" placeholder="referal code">
+                              </div>
+
+                              <div class="col-md-12 form-group">
+
+                                <input type="hidden" name="user" value="{{user.username}}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="save changes" class="btn btn-primary btn-lg px-5">
+                            </div>
+                        </div>
+                    </form>
+
+            </div>
+            <div class="d-none d-lg-block">
+                <img src="static/images/giphy.gif" width="140%" height="100%">
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

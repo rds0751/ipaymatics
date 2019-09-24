@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style >
+	.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width:1000px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.chu {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #51be78;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+
+</style>
+<br><br><br><br>
+
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('/static/images/bg_1.jpg')">
+	<div class="container">
+		<div class="row align-items-end">
+			<div class="col-lg-7">
+				<h2 class="mb-0">My Profile</h2>
+				<p></p>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="custom-breadcrumns border-bottom">
+	<div class="container">
+		<a href="/">Home</a>
+		<span class="mx-3 icon-keyboard_arrow_right"></span>
+		<span class="current">My profile</span>
+	</div>
+</div>
+
+<div>
+	
+
+<h2 style="text-align:center" class="display-4">User Profile</h2>
+
+<div class="card">
+	<div class="row">  
+		<div class="col-md-6">
+      <br>
+		<img class="img-fluid" src="/{{ data.Profile_pic }}"  alt="Profile"  height="400px" width="400px;"></div>
+		<div class="col-md-6" style="padding:50px;">
+  <h3 align="left"><span style="font-weight: bolder;">Name:</span> {{data.First_name}}&nbsp;{{data.Last_name}}</h3>
+  <h3 align="left"><span style="font-weight: bolder;">Refered By :</span>{{data.refer}}</h3>
+  <h3 align="left"><span style="font-weight: bolder;">Account type:</span>{{data.account_type}}</h3>
+  <h3 align="left"><span style="font-weight: bolder;">Address :</span>{{data.Address1}}</h3>
+  <h3 align="left"><span style="font-weight: bolder;">Permanant Address:</span>{{data.Address2}}</h3>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+  </div>
+  
+
+  <p><a type="button" class="chu" href="/tree">View My tree</a></p>
+  <p><a type="button" class="chu" href="/tree">View My savings Account</A></p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+{% endblock %}
+

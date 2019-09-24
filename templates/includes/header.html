@@ -2,14 +2,34 @@
     <div class="py-2 bg-light">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-9 d-none d-lg-block">
+          <div class="col-lg-7 d-none d-lg-block">
             <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a> 
             <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a> 
             <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@ipaymatics.com</a> 
           </div>
-          <div class="col-lg-3 text-right">
+          <div class="col-lg-5 text-right">
+
+
+            {% block content %}
+            {% if user.is_superuser %}
+             <a style="padding-right:50px;" >
+              Admin dashboard
+            </a>
+
+            <a href="/myprofile/" style="padding-right:50px;">My-Profile</a>
+            <a href="/accounts/logout">logout</a>
+            {% elif  user.is_authenticated  %}
+
+            Hello {{ user.username|upper }} 
+            <a href="/myprofile/">Profile</a>
+
+            <a href="/accounts/logout" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Logout</a>  
+
+            {% else %}
             <a href="/accounts/login" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
             <a href="/accounts/register" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            {% endif %}
+            {% endblock %}
           </div>
         </div>
       </div>
@@ -19,7 +39,7 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div class="site-logo">
-            <a href="index.html" class="d-block">
+            <a href="/" class="d-block">
               <img src="{% static 'images/logo.png' %}" alt="Image" class="img-fluid">
             </a>
           </div>
@@ -27,7 +47,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active">
-                  <a href="index.html" class="nav-link text-left">Home</a>
+                  <a href="/" class="nav-link text-left">Home</a>
                 </li>
                 <li>
                   <a href="/about/" class="nav-link text-left">About Us</a>
