@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('/static/images/bg_1.jpg')">
+	<div class="container">
+		<div class="row align-items-end">
+			<div class="col-lg-7">
+				<h2 class="mb-0">Transaction Successfull</h2>
+			</div>
+		</div>
+	</div>
+</div> 
+<br><br><br>
+<div class="container">
+	<div class="row">
+		<div class="well col-sm-12">
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6">
+					<address>
+						<strong>{{ data.firstname }}</strong>
+						<br>
+						{{ data.address1 }}
+						<br>
+						{{ data.address2 }}
+						<br>
+						{{ data.city }}
+						<abbr title="Phone">P:</abbr>{{ data.phone }}
+					</address>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 text-right">
+					<p>
+						<em>{{ data.addedon }}</em>
+					</p>
+					<p>
+						<em>Receipt #: {{txnid}}</em>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<h1>Receipt</h1>
+				</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>#</th>
+						<th class="text-center">Price</th>
+						<th class="text-center">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="col-md-9"><h4><em>{{ data.productinfo }}</em></h4></td>
+						<td class="col-md-1" style="text-align: center"> 1 </td>
+						<td class="col-md-1 text-center">{{ data.net_amount_debit }}</td>
+						<td class="col-md-1 text-center">{{ data.net_amount_debit }}</td>
+					</tr>
+					<tr>
+						<td>   </td>
+						<td>   </td>
+						<td class="text-right">
+							<p>
+								<strong>Subtotal: </strong>
+							</p>
+							<p>
+								<strong>Discount: </strong>
+							</p>
+						</td>
+							<td class="text-center">
+								<p>
+									<strong>{{ data.net_amount_debit }}</strong>
+								</p>
+								<p>
+									<strong>{{ data.discount }}</strong>
+								</p>
+							</td>
+							</tr>
+							<tr>
+								<td>   </td>
+								<td>   </td>
+								<td class="text-right"><h4><strong>Total: </strong>{{ data.net_amount_debit }}</h4></td>
+								<td class="text-center text-danger"><h4><strong>{{ data.net_amount_debit }}</strong></h4></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+</div>
+		
+		{% endblock %}

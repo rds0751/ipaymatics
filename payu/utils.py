@@ -15,11 +15,11 @@ def generate_hash(data):
     hash = sha512(sash.encode('utf-8'))
     return hash.hexdigest().lower()
 
-def verify_hash(data, SALT):    
-    keys.reverse()
-    hash = sha512(settings.PAYU_INFO.get('merchant_salt'))
-    hash.update("%s%s" % ('|', str(data.get('status', ''))))
-    for key in keys:
-        sash+="%s%s" % (str(data.get(key, '')), '|')
-        hash = sha512(sash.encode('utf-8'))
+def verify_hash(request):
+    HashSeq = request.GET['salt']+'|'+data.status+'|||||||||||'+data.email+'|'+data.firstname+'|'+data.productinfo+'|'+data.amount+'|'+data.txnid+'|'+data.key
+    hash = sha512(HashSeq.encode('utf-8'))
+    # for key in keys:
+    #     sash+="%s%s" % (str(data.get(key, '')), '|')
+    # sash+=settings.PAYU_INFO.get('merchant_salt')
+    # hash = sha512(sash.encode('utf-8'))
     return (hash.hexdigest().lower() == data.get('hash'))
