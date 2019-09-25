@@ -13,7 +13,7 @@ SECRET_KEY = '5%!mbw_wxuyyy7^7)-4io*zwb1m(!wvub_5vo8yg=m2g-0n8g+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 SITE_ID = 1
 
