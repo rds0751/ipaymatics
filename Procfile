@@ -1,1 +1,1 @@
-web: gunicorn djusers.wsgi --log-file -
+web: gunicorn djusers.wsgi
