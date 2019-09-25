@@ -16,6 +16,6 @@ class Userprofile(models.Model):
 	discount=models.CharField(max_length=100,default="")
 	net_amount_debit=models.CharField(max_length=100,default="")
 	refer = models.CharField(max_length=100)
-	username= models.CharField(max_length=100, unique=True)
+	username= models.CharField(max_length=100)
 	def __str__(self):
  		return self.username

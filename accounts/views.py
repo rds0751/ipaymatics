@@ -49,6 +49,28 @@ def register_view(request):
     }
     return render(request, "signup.html", context)
 
+def refer_view(request):
+    if request.method == 'POST':
+        if 'fn' in request.POST:
+            up = Userprofile()
+            up.productinfo = request.POST['pdi']
+            up.First_name = request.POST['fn']
+            up.Address1 = request.POST['ad1']
+            up.Address2 = request.POST['ad2']
+            up.website = request.POST['city']
+            up.goals_for_digital_marketing = request.POST['phone']
+            up.txnid = request.POST['txid']
+            up.discount = request.POST['dis']
+            up.net_amount_debit = request.POST['net']
+            up.username = request.user
+            up.refer = request.POST['refer']
+            up.save()
+            data = up
+    context = {
+        'data': data,
+    }
+    return render(request, "myprofile.html", context)
+
 
 
 def logout_view(request):

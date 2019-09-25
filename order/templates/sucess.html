@@ -90,7 +90,8 @@
 					</tbody>
 				</table>
 
-				<form action="/" method="POST">
+				<form action="/refer/" method="POST">
+					{% csrf_token %}
 					<input type="hidden" name="pdi" value="{{ data.productinfo }}">
 					<input type="hidden" name="fn" value="{{ data.firstname }}">
 					<input type="hidden" name="ad1" value="{{ data.address1 }}">
@@ -101,6 +102,7 @@
 					<input type="hidden" name="dis" value="{{ data.discount }}">
 					<input type="hidden" name="net" value="{{ data.net_amount_debit }}">
 					<input type="Text" name="refer" >
+					<input type="submit" class="btn" name=""><br><br><br><br>
 				</form>
 			</div>
 		</div>

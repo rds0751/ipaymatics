@@ -25,15 +25,10 @@ def home(request):
 			return redirect('tree')
 	return render(request, "home.html", {})
 
-
-def referal_view(request):
-     return render(request, "refer.html")
-
-
 @login_required
 def tree_view(request):
     data = Userprofile.objects.all()
-    data2 = Userprofile.objects.get(username=request.user)
+    data2 = Userprofile.objects.filter(username=request.user)
     w_data = Userprofile.objects.filter(refer=request.user)
     date_joined=request.user.date_joined
     Last_login=request.user.last_login
@@ -44,7 +39,6 @@ def tree_view(request):
     	q_data += Userprofile.objects.filter(refer=p.username)
     wallet = count_w_data + len(q_data)
     amt = 1000+wallet*1000/2
-
     context = {'data': data, 'wallet': wallet, 'amt': amt,'data2':data2,'date':date}
     return render(request, "tree.html" , context)
 

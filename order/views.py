@@ -54,46 +54,35 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 @csrf_protect
 @csrf_exempt
 def success(request):
-    c = {}
-    c.update(csrf(request))
-    status=request.POST["status"]
-    firstname=request.POST["firstname"]
-    amount=request.POST["amount"]
-    txnid=request.POST["txnid"]
-    posted_hash=request.POST["hash"]
-    key=request.POST["key"]
-    productinfo=request.POST["productinfo"]
-    email=request.POST["email"]
-    salt=settings.PAYU_INFO['merchant_salt']
-    data = request.POST
-    if request.method == 'POST':
-    	if 'fn' in request.POST:  
-            up = Userprofile()
-            up.productinfo = request.POST['pri']
-            up.First_name = request.POST['fn']
-            up.Address1 = request.POST['ad1']
-            up.Address2 = request.POST['ad2']
-            up.website = request.POST['city']
-            up.goals_for_digital_marketing = request.POST['phone']
-            up.txnid = request.POST['txid']
-            up.discount = request.POST['dis']
-            up.net_amount_debit = request.POST['net']
-            up.username = request.user
-            up.save()
-    try:
-        additionalCharges=request.POST["additionalCharges"]
-        retHashSeq=additionalCharges+'|'+salt+'|'+status+'|||||||||||'+email+'|'+firstname+'|'+productinfo+'|'+amount+'|'+txnid+'|'+key
-    except Exception:
-        retHashSeq = salt+'|'+status+'|||||||||||'+email+'|'+firstname+'|'+productinfo+'|'+amount+'|'+txnid+'|'+key
-    hashh=hashlib.sha512(retHashSeq.encode('utf-8')).hexdigest().lower()
-    if(hashh !=posted_hash):
-        print("Invalid Transaction. Please try again")
-    else:
-        print("Thank You. Your order status is ", status)
-        print("Your Transaction ID for this transaction is ",txnid)
-        print("We have received a payment of Rs. ", amount ,". Your order will soon be shipped.")
-    context = {"txnid":txnid,"status":status,"amount":amount, 'data':data}
-    return render(request, 'sucess.html', context)
+	if request.method == 'POST':
+		if 'status' in request.POST:
+			c = {}
+			c.update(csrf(request))
+			status=request.POST["status"]
+			firstname=request.POST["firstname"]
+			amount=request.POST["amount"]
+			txnid=request.POST["txnid"]
+			posted_hash=request.POST["hash"]
+			key=request.POST["key"]
+			productinfo=request.POST["productinfo"]
+			email=request.POST["email"]
+			salt=settings.PAYU_INFO['merchant_salt']
+			data = request.POST
+	try:
+		additionalCharges=request.POST["additionalCharges"]
+		retHashSeq=additionalCharges+'|'+salt+'|'+status+'|||||||||||'+email+'|'+firstname+'|'+productinfo+'|'+amount+'|'+txnid+'|'+key
+	except Exception:
+		retHashSeq = salt+'|'+status+'|||||||||||'+email+'|'+firstname+'|'+productinfo+'|'+amount+'|'+txnid+'|'+key
+	hashh=hashlib.sha512(retHashSeq.encode('utf-8')).hexdigest().lower()
+	if(hashh !=posted_hash):
+		print("Invalid Transaction. Please try again")
+	else:
+		print("Thank You. Your order status is ", status)
+		print("Your Transaction ID for this transaction is ",txnid)
+		print("We have received a payment of Rs. ", amount ,". Your order will soon be shipped.")
+
+	context = {"txnid":txnid,"status":status,"amount":amount, 'data':data}
+	return render(request, 'sucess.html', context)
 
 
 def failure(request):

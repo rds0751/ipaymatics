@@ -3,16 +3,16 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import home,tree_view,index,profile_view,savings_view,admin_dashboard_view,referal_view
+from .views import home,tree_view,index,profile_view,savings_view,admin_dashboard_view
 
-from accounts.views import login_view, register_view, logout_view
+from accounts.views import login_view, register_view, logout_view, refer_view
 
 urlpatterns = [
 path('admin/', admin.site.urls),
 path('home', home),
 path('', index),
 path('tree/', tree_view, name='tree'),
-path('refer/', register_view, name='refer'),
+path('refer/', refer_view, name='refer'),
 path('myprofile/', profile_view, name='myprofile'),
 path('admin_dashboard/', admin_dashboard_view, name='admin_dashboard'),
 path('mysavings/', savings_view, name='savings_view'),
