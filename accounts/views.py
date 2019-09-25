@@ -40,10 +40,9 @@ def register_view(request):
         user.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
-        return redirect('refer')
         if next:
             return redirect(next)
-        return redirect('refer')
+        return redirect('/order/checkout/')
 
     context = {
         'form': form,
