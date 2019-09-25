@@ -38,6 +38,7 @@ class PayUForm(forms.Form):
     drop_category = forms.CharField(required=False)
     custom_note = forms.CharField(required=False)
     note_category = forms.CharField(required=False)
+    service_provider = forms.CharField(required=True)
     
     def clean(self):
         cleaned_data = super(PayUForm, self).clean()

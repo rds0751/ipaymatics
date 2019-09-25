@@ -4,7 +4,8 @@ from django.http import HttpResponse, HttpRequest, Http404
 from django.template import RequestContext
 from django.conf import settings
 from django.shortcuts import reverse
-from payu.utils import generate_hash
+from payu.utils import generate_hash, verify_hash
+from accounts.models import *
 
 from payu.forms import PayUForm
 from order.forms import OrderForm
@@ -23,7 +24,7 @@ def checkout(request):
             initial.update({'key': settings.PAYU_INFO['merchant_key'],
                             'surl': request.build_absolute_uri(reverse('order:success')),
                             'furl': request.build_absolute_uri(reverse('order:success')),
-                            
+                            'service_provider': 'payu_paisa',
                             'curl': request.build_absolute_uri(reverse('order:cancel'))})
             # Once you have all the information that you need to submit to payu
             # create a payu_form, validate it and render response using
@@ -45,20 +46,55 @@ def checkout(request):
         order_form = OrderForm(initial=initial)
     context = {'form': order_form}
     return render(request, 'checkout.html', context)
- 
+
+import hashlib
+from django.template.context_processors import csrf
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
+@csrf_protect
+@csrf_exempt
 def success(request):
+    c = {}
+    c.update(csrf(request))
+    status=request.POST["status"]
+    firstname=request.POST["firstname"]
+    amount=request.POST["amount"]
+    txnid=request.POST["txnid"]
+    posted_hash=request.POST["hash"]
+    key=request.POST["key"]
+    productinfo=request.POST["productinfo"]
+    email=request.POST["email"]
+    salt=settings.PAYU_INFO['merchant_salt']
+    data = request.POST
     if request.method == 'POST':
-        if not verify_hash(request.POST):
-            logger.warning("Response data for order (txnid: %s) has been "
-                           "tampered. Confirm payment with PayU." %
-                           request.POST.get('txnid'))
-            return redirect('order.failure')
-        else:
-            logger.warning("Payment for order (txnid: %s) succeeded at Ipaymatics" %
-                           request.POST.get('txnid'))
-            return render(request, 'success.html')
+    	if 'fn' in request.POST:  
+            up = Userprofile()
+            up.productinfo = request.POST['pri']
+            up.First_name = request.POST['fn']
+            up.Address1 = request.POST['ad1']
+            up.Address2 = request.POST['ad2']
+            up.website = request.POST['city']
+            up.goals_for_digital_marketing = request.POST['phone']
+            up.txnid = request.POST['txid']
+            up.discount = request.POST['dis']
+            up.net_amount_debit = request.POST['net']
+            up.username = request.user
+            up.save()
+    try:
+        additionalCharges=request.POST["additionalCharges"]
+        retHashSeq=additionalCharges+'|'+salt+'|'+status+'|||||||||||'+email+'|'+firstname+'|'+productinfo+'|'+amount+'|'+txnid+'|'+key
+    except Exception:
+        retHashSeq = salt+'|'+status+'|||||||||||'+email+'|'+firstname+'|'+productinfo+'|'+amount+'|'+txnid+'|'+key
+    hashh=hashlib.sha512(retHashSeq.encode('utf-8')).hexdigest().lower()
+    if(hashh !=posted_hash):
+        print("Invalid Transaction. Please try again")
     else:
-        raise Http404
+        print("Thank You. Your order status is ", status)
+        print("Your Transaction ID for this transaction is ",txnid)
+        print("We have received a payment of Rs. ", amount ,". Your order will soon be shipped.")
+    context = {"txnid":txnid,"status":status,"amount":amount, 'data':data}
+    return render(request, 'sucess.html', context)
+
 
 def failure(request):
     if request.method == 'POST':

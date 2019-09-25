@@ -1,6 +1,7 @@
 from django import forms
 
 Price = (
+            (1, '1'),
         (1000, '1000'),
         (3000, '3000'),
         (15000, '15000'),
@@ -17,7 +18,7 @@ class OrderForm(forms.Form):
     email = forms.EmailField()
     phone = forms.RegexField(regex=r'\d{10}', min_length=10, max_length=10)
     address1 = forms.CharField(required=False,widget=forms.Textarea(attrs={"rows":3, "cols":20}))
-    address2 = forms.CharField(required=False)
+    address2 = forms.CharField(required=False,widget=forms.Textarea(attrs={"rows":3, "cols":20}))
     city = forms.CharField(required=False)
     state = forms.CharField(required=False)
     country = forms.CharField(required=False)
