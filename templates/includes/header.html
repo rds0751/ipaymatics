@@ -13,7 +13,7 @@
             {% block content %}
             {% if user.is_superuser %}
              <a style="padding-right:50px;" >
-              Admin dashboard
+              <a href="/admin_dashboard">Admin Dashboard</a>
             </a>
 
             <a href="/myprofile/" style="padding-right:50px;">My-Profile</a>
@@ -46,19 +46,19 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active">
+                <li >
                   <a href="/" class="nav-link text-left">Home</a>
                 </li>
                 <li>
                   <a href="/about/" class="nav-link text-left">About Us</a>
                 </li>
-                <li>
-                  <a href="/account/" class="nav-link text-left">Accounts</a>
-                </li>
+                <li><a href="/#our_products">Funding</a></li>
+                <!-- 
+
                 <li>
                   <a href="/programs/" class="nav-link text-left">Programs</a>
                 </li>
-
+ -->
                 <li>
                     <a href="/blog/" class="nav-link text-left">Blog</a>
                   </li>

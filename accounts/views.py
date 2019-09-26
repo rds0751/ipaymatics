@@ -65,6 +65,9 @@ def refer_view(request):
             up.username = request.user
             up.refer = request.POST['refer']
             up.save()
+            us=Userprofile.objects.get(username=up.refer)
+            us.no_of_referals+=1
+            us.save()
             data = up
     context = {
         'data': data,

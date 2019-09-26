@@ -64,6 +64,24 @@ def admin_dashboard_view(request):
 		users = paginator.page(paginator.num_pages)
 	return render(request, "admindashboard.html",{ 'users': users })
 
+def admin_dashboard_view_single(request,myid):
+    data=Userprofile.objects.filter(id=myid)
+    data2=Userprofile.objects.get(id=myid)
+    payout=440*data2.no_of_referals
+    if request.method == 'POST':
+        if 'payout_cleared' in request.POST:
+        	clear = request.POST['payout_cleared']
+        	clear2=int(clear)
+        	if clear2 <= payout-data2.payout_ampunt :
+        		data2.payout_ampunt+=clear2
+        		data2.save()
+        else:
+            print('Errors')
+ 
+    
+    data = {'data': data[0],'payout':payout}
+    return render(request,'admin-single.html',data)
+
 
 def index(request):
 	return render(request, 'base.html')
@@ -72,4 +90,11 @@ def index(request):
 def profile_view(request):
 	data=Userprofile.objects.get(username=request.user)
 	context={'data':data}
+	if  request.method == 'POST':
+		data2=Userprofile.objects.filter(id=data.id)
+		data2.Profile_pic = request.FILES['profile']
+		data2.save()
+	else:
+		print('Errors')
+
 	return render(request, "myprofile.html",context)

@@ -22,9 +22,10 @@
 </div>
 
 <div class="container">
-
-<table class="table table-bordered">
-  <thead>
+  <br><br>
+<div class="row">
+<table class="table table-bordered table-striped table-hover ">
+  <thead class="bg-primary" style="color:white">
     <tr>
       <th>Username</th>
       <th>Name</th>
@@ -34,7 +35,7 @@
   <tbody>
     {% for user in users %}
       <tr>
-        <td>{{ user.username }}</td>
+        <td><a href="/admin_dashboard/profile/{{ user.id }}">{{ user.username }}</a></td>
         <td>{{ user.First_name }}{{ user.Last_name }}</td>
         <td>{{ user.account_type }}</td>
       </tr>
@@ -62,7 +63,13 @@
       <li class="disabled"><span>&raquo;</span></li>
     {% endif %}
   </ul>
-</div>
+
+
 {% endif %}
+</div>
+<br><br>
+
+</div>
+
 {% endblock %}
 
