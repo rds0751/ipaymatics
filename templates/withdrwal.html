@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style >
+.card {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+max-width:1000px;
+margin: auto;
+text-align: center;
+font-family: arial;
+}
+
+.title {
+color: grey;
+font-size: 18px;
+}
+
+.chu {
+border: none;
+outline: 0;
+display: inline-block;
+padding: 8px;
+color: white;
+background-color: #51be78;
+text-align: center;
+cursor: pointer;
+width: 100%;
+font-size: 18px;
+}
+
+
+</style>
+<br><br><br><br>
+
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('/static/images/bg_1.jpg')">
+<div class="container">
+<div class="row align-items-end">
+	<div class="col-lg-7">
+		<h2 class="mb-0">withdrawal</h2>
+		<p></p>
+	</div>
+</div>
+</div>
+</div> 
+
+<div class="custom-breadcrumns border-bottom">
+<div class="container">
+<a href="/">Home</a>
+<span class="mx-3 icon-keyboard_arrow_right"></span>
+<span class="current">withdrawal</span>
+</div>
+</div>
+
+<div>
+
+
+<h2 style="text-align:center" class="display-4">Withdrawal</h2>
+
+<div class="card">
+<div class="row">  
+<div class="col-sm-3">
+</div>
+<div class="col-sm-6">
+  <br>
+
+
+<form method="POST" action="/withdrwal/" onsubmit="">
+     {% csrf_token %}
+
+<textarea cols="5" rows="4" name="withdrawal"  class="form-control">
+  Kindly Pay my revenue
+  
+</textarea>
+<br>
+    <input type="submit" class="btn btn-primary" value="Send Request">
+  </form>
+  <br><br><br>
+{% if success == True %}
+<div class="alert alert-success alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+   <strong>Success!</strong> Your Request has been sent.
+</div>
+{% endif %}
+</div>
+
+</div>
+<br><br>
+</div>
+<br><br><br><br>
+</div>
+
+{% endblock %}
+

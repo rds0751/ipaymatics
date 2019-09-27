@@ -20,3 +20,18 @@ class Userprofile(models.Model):
 	username= models.CharField(max_length=100 ,unique=True)
 	def __str__(self):
  		return self.username
+
+class User_account_profile(models.Model):
+	username=models.CharField(max_length=100 ,unique=True)
+	upi=models.CharField(max_length=100,default="")
+	bank_ifsc=models.CharField(max_length=100,default="")
+	Name_of_account_holder=models.CharField(max_length=100,default="")
+	
+	def __str__(self):
+ 		return self.username
+
+class withdrawal(models.Model):
+	username=models.CharField(max_length=100 )
+	withdrawal=models.CharField(max_length=100 )
+	def __str__(self):
+ 		return self.username

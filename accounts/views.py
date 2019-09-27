@@ -64,13 +64,17 @@ def refer_view(request):
             up.net_amount_debit = request.POST['net']
             up.username = request.user
             up.refer = request.POST['refer']
-            up.save()
-            us=Userprofile.objects.get(username=up.refer)
-            us.no_of_referals+=1
-            us.save()
-            data = up
+            if up.no_of_referals == 2:
+                var= "this user has already maximun no of referals please try again with another refer id"
+            else:
+                up.save()
+                us=Userprofile.objects.get(username=up.refer)
+                us.no_of_referals+=1
+                us.save()
+                data = up
     context = {
         'data': data,
+        'var':var
     }
     return render(request, "myprofile.html", context)
 
