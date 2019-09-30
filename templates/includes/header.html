@@ -4,8 +4,8 @@
         <div class="row align-items-center">
           <div class="col-lg-7 d-none d-lg-block">
             <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a> 
-            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a> 
-            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@ipaymatics.com</a> 
+            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 9910749409</a> 
+            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> support@ipaymatics.com</a> 
           </div>
           <div class="col-lg-5 text-right">
 
@@ -23,11 +23,11 @@
             Hello {{ user.username|upper }} 
             <a href="/myprofile/">Profile</a>
 
-            <a href="/accounts/logout" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Logout</a>  
+            <a href="/accounts/log-out" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Logout</a>  
 
             {% else %}
-            <a href="/accounts/login" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="/accounts/register" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            <a href="/accounts/log-in" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+            <a href="/accounts/sign-up" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
             {% endif %}
             {% endblock %}
           </div>
@@ -46,6 +46,25 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                {% if user.is_authenticated  %}
+
+                <li>
+                    <a href="/tree" class="nav-link text-left">Tree</a>
+                  </li>
+                  <li>
+                    <a href="/myprofile/edit" class="nav-link text-left">Account Details</a>
+                  </li>
+                  <li>
+                    <a href="/myprofile" class="nav-link text-left">My Profile</a>
+                  </li>
+                  <li>
+                    <a href="/withdrwal" class="nav-link text-left">withdrawal</a>
+                  </li>
+                <li>
+                    <a href="/contact/" class="nav-link text-left">Contact</a>
+
+                  </li>
+            {% else %}
                 <li >
                   <a href="/" class="nav-link text-left">Home</a>
                 </li>
@@ -54,7 +73,6 @@
                 </li>
                 <li><a href="/#our_products">Funding</a></li>
                 <!-- 
-
                 <li>
                   <a href="/programs/" class="nav-link text-left">Programs</a>
                 </li>
@@ -66,15 +84,16 @@
                     <a href="/contact/" class="nav-link text-left">Contact</a>
 
                   </li>
+            {% endif %}
               </ul>                                                                                                                                                                                                                                                                                          </ul>
             </nav>
 
           </div>
           <div class="ml-auto">
             <div class="social-wrap">
-              <a href="#"><span class="icon-facebook"></span></a>
-              <a href="#"><span class="icon-twitter"></span></a>
-              <a href="#"><span class="icon-linkedin"></span></a>
+              <a href="#"><span class="icon-edit"></span></a>
+              <a href="#"><span class="icon-people"></span></a>
+              <a href="#"><span class="icon-password"></span></a>
 
               <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
                 class="icon-menu h3"></span></a>

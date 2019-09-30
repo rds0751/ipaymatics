@@ -1,10 +1,12 @@
 from django import forms
 
 Price = (
-            (1, '1'),
-        (1000, '1000'),
-        (3000, '3000'),
-        (15000, '15000'),
+            (102, '₹ 100'),
+            (510, '₹ 500'),
+        (1020, '₹ 1000'),
+        (2040, '₹ 2000'),
+        (5100, '₹ 5000'),
+        (10200, '₹ 10000'),
 )
 class OrderForm(forms.Form):
 
@@ -13,12 +15,12 @@ class OrderForm(forms.Form):
     amount = forms.ChoiceField(choices=Price)
 
     # buyer details
-    firstname = forms.CharField()
-    lastname = forms.CharField(required=False)
-    email = forms.EmailField()
+    firstname = forms.CharField(required=False,widget = forms.HiddenInput())
+    lastname = forms.CharField(required=False, widget = forms.HiddenInput())
+    email = forms.EmailField(required=False,widget = forms.HiddenInput())
     phone = forms.RegexField(regex=r'\d{10}', min_length=10, max_length=10)
     address1 = forms.CharField(required=False,widget=forms.Textarea(attrs={"rows":3, "cols":20}))
-    address2 = forms.CharField(required=False,widget=forms.Textarea(attrs={"rows":3, "cols":20}))
+    address2 = forms.CharField(required=False, widget = forms.HiddenInput())
     city = forms.CharField(required=False)
     state = forms.CharField(required=False)
     country = forms.CharField(required=False)

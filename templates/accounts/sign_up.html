@@ -1,0 +1,17 @@
+{% extends 'accounts/base-acc.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content-1 %}
+<br><br><br><br>
+    <form method="post">
+
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button class="btn btn-success">{% trans 'Create' %}</button>
+
+    </form>
+
+{% endblock %}

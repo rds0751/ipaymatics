@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'core',
+    'bootstrap4',
 
     'accounts',
     'contact',
@@ -42,8 +43,8 @@ INSTALLED_APPS = [
 
 PAYU_INFO = {'merchant_key': "RfLhqZQ5",
              'merchant_salt': "R57ivFJigr",
-             'payment_url': 'https://secure.payu.in/_payment'
-             # 'payment_url': 'https://sandboxsecure.payu.in/_payment',
+             # 'payment_url': 'https://secure.payu.in/_payment'
+             'payment_url': 'https://sandboxsecure.payu.in/_payment',
 
 }
 
@@ -75,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 
@@ -158,3 +159,28 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER ='ripudaman@wosumo.in'
+EMAIL_HOST_PASSWORD = 'GauravRip@696'
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+
+ENABLE_USER_ACTIVATION = False
+DISABLE_USERNAME = False
+LOGIN_VIA_EMAIL = True
+LOGIN_VIA_EMAIL_OR_USERNAME = True
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'accounts:log_in'
+USE_REMEMBER_ME = False
+
+RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME = True
+EMAIL_ACTIVATION_AFTER_CHANGING = True
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
+SIGN_UP_FIELDS = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+if DISABLE_USERNAME:
+    SIGN_UP_FIELDS = ['first_name', 'last_name', 'email', 'password1', 'password2']

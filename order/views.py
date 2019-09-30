@@ -7,6 +7,8 @@ from django.shortcuts import reverse
 from payu.utils import generate_hash, verify_hash
 from accounts.models import *
 
+from django.contrib.auth.models import User
+
 from payu.forms import PayUForm
 from order.forms import OrderForm
 
@@ -20,11 +22,15 @@ def checkout(request):
     if request.method == 'POST':
         order_form = OrderForm(request.POST)
         if order_form.is_valid():
+            user = request.user
+            user = User.objects.get(username=user)
             initial = order_form.cleaned_data
             initial.update({'key': settings.PAYU_INFO['merchant_key'],
                             'surl': request.build_absolute_uri(reverse('order:success')),
                             'furl': request.build_absolute_uri(reverse('order:success')),
                             'service_provider': 'payu_paisa',
+                            'firstname': user.first_name,
+                            'email': user.email,
                             'curl': request.build_absolute_uri(reverse('order:cancel'))})
             # Once you have all the information that you need to submit to payu
             # create a payu_form, validate it and render response using
