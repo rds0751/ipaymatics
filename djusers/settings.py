@@ -43,8 +43,8 @@ INSTALLED_APPS = [
 
 PAYU_INFO = {'merchant_key': "RfLhqZQ5",
              'merchant_salt': "R57ivFJigr",
-             # 'payment_url': 'https://secure.payu.in/_payment'
-             'payment_url': 'https://sandboxsecure.payu.in/_payment',
+             'payment_url': 'https://secure.payu.in/_payment'
+             # 'payment_url': 'https://sandboxsecure.payu.in/_payment',
 
 }
 
@@ -76,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 
