@@ -112,7 +112,7 @@ WSGI_APPLICATION = 'djusers.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-
+import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
         default='postgres://jzazylejdmnait:d2302d8dd3024d3a326387232f439f016743bde98104c0a89c090589c41ce6a2@ec2-54-235-104-136.compute-1.amazonaws.com:5432/d6mod8m22e77q',
