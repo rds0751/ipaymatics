@@ -172,12 +172,13 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER ='ripudaman@wosumo.in'
 EMAIL_HOST_PASSWORD = 'GauravRip@696'
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'ripudaman@wosumo.in'
 
 ENABLE_USER_ACTIVATION = False
 DISABLE_USERNAME = False
 LOGIN_VIA_EMAIL = True
 LOGIN_VIA_EMAIL_OR_USERNAME = True
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = '/myprofile'
 LOGIN_URL = 'accounts:log_in'
 USE_REMEMBER_ME = False
 
