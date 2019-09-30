@@ -3,67 +3,128 @@
 {% block content %}
 
 <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('/static/images/bg_1.jpg')">
-	<div class="container">
-		<div class="row align-items-end">
-			<div class="col-lg-7">
-				<h2 class="mb-0">My Network</h2>
-				<p></p>
-			</div>
+<div class="container">
+	<div class="row align-items-end">
+		<div class="col-lg-7">
+			<h2 class="mb-0">My Network</h2>
+			<p></p>
 		</div>
 	</div>
+</div>
 </div> 
 
 <div class="custom-breadcrumns border-bottom">
-	<div class="container">
-		<a href="index.html">Home</a>
-		<span class="mx-3 icon-keyboard_arrow_right"></span>
-		<span class="current">My Tree</span>
-	</div>
+<div class="container">
+	<a href="index.html">Home</a>
+	<span class="mx-3 icon-keyboard_arrow_right"></span>
+	<span class="current">My Tree</span>
+</div>
 </div>
 <div class="site-section">
-	
-							  
-	
-	<div class="container course-1-item">
-			<h2  style="font-size:35px;color: white;float:left;" class="badge bg-primary xl">Total Networks: {{wallet}}</h2>
-	
-		<h2  style="font-size:35px;color: white;float: right;" class="badge bg-primary xl">Total Amount in Account: {{payout}}</h2>
-		<h2>{{ data.account_type}}</h2>
 
-		<br><br><br>
-		<div class="category"><h3 align="center">{{user.username}}</h3></div> 
-		<div class="row" align="center">		
-			{% for r in data %}
+						  
 
-			{% if user.username == r.refer %}
-			<div class="col-lg-6 col-md-6 mb-6">
-				<div class="course-1-item">
-					<figure class="thumnail">
-						<a href="course-single.html"><img src="{% static 'images/arrow123.png' %}" alt="Image" class="img-fluid"></a>
-						<div class="category"><h3>{{r.username}}</h3></div>
-						<div class="row">
-							{% for g in data %}
-							{% if r.username == g.refer %} 
-							<div class="col-lg-6 col-md-6 mb-6">
-								<div class="course-1-item">
-									<figure class="thumnail">
-										<a href="course-single.html"><img src="{% static 'images/arrow123.png' %}" alt="Image" class="img-fluid"></a>
-										<div class="category"><h3>{{g.username}} </h3></div>
-									</figure>
-								</div>
+<div class="container course-1-item">
+		<h2  style="font-size:35px;color: white;float:left;" class="badge bg-primary xl">Total Networks: {{wallet}}</h2>
+
+	<h2  style="font-size:35px;color: white;float: right;" class="badge bg-primary xl">Total Amount in Account: {{payout}}</h2>
+	<h2>{{ data.account_type}}</h2>
+
+	<br><br><br>
+	<hr>
+	<br> 
+	<div align="center">
+	<!-- <img  src="{% static 'images/arrow123.png' %}"  alt="Image" class="img-fluid"> -->
+</div>
+
+	<div class="row" align="center">
+		<div class="col-sm-12">
+<style type="text/css">
+ .tf-nc {
+ 	border-radius:50%;
+}
+
+.tf-custom .tf-nc:before,
+.tf-custom .tf-nc:after {
+}
+
+.tf-custom li li:before {
+}
+</style>
+
+		<div class="tf-tree example">
+<ul>
+<li>
+  <span class="tf-nc category" ><h3>{{user.username}}</h3></span>
+  <ul>
+  	{% for r in data %}
+
+		{% if user.username == r.refer %}
+		
+    <li>
+      <span class="tf-nc">{{r.username}}</span>
+     
+      								{% for g in data %}
+						{% if r.username == g.refer %} 
+						     <ul>
+ 
+
+        <li><span class="tf-nc">{{g.username}}</span></li>
+        
+        {% endif %}
+		{% endfor %}
+      </ul>
+    </li>
+    			{% endif %}
+		{% endfor %}
+    <!-- <li>
+
+      <span class="tf-nc">3</span>
+      <ul>
+        <li><span class="tf-nc">7</span></li>
+        <li><span class="tf-nc">8</span></li>
+      </ul>
+    </li> -->
+  </ul>
+</li>
+</ul>
+</div>
+</div>
+
+		<!-- {% for r in data %}
+
+		{% if user.username == r.refer %}
+		<div class="col-lg-6 col-md-6 mb-6">
+			<div class="course-1-item">
+				<figure class="thumnail">
+					<br>
+					<img width="50px" height="50px" style="border-radius:50%"  src="/static/images/euser.jpg">
+					
+					<div class="row">
+						
+						{% for g in data %}
+						{% if r.username == g.refer %} 
+
+						<div class="col-lg-6 col-md-6 mb-6">
+							<div class="course-1-item">
+								<figure class="thumnail">
+									<a href="course-single.html"><img src="{% static 'images/arrow123.png' %}" alt="Image" class="img-fluid"></a>
+									<div class="category"><h3>{{g.username}} </h3></div>
+								</figure>
 							</div>
-							{% endif %}
-							{% endfor %}
 						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
 
-					</figure>
-				</div>
+				</figure>
 			</div>
-
-			{% endif %}
-			{% endfor %}
 		</div>
+
+		{% endif %}
+		{% endfor %} -->
 	</div>
+</div>
 </div>
 <!-- <h2>{{date.days}} | {{date.months}}</h2> -->
 

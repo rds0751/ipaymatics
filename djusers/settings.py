@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'core',
     'bootstrap4',
 
-    'accounts',
+    'accounts.apps.AccountsConfig',
+
     'contact',
     'blog',
     'payu',
