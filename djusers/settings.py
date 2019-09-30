@@ -106,17 +106,17 @@ WSGI_APPLICATION = 'djusers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://wzloqilyxdbbdd:6c9c9f91937e5bad238cb87ee5daf398f827121596fd4e7166abaebc36e8bf09@ec2-54-225-205-79.compute-1.amazonaws.com:5432/d7heq9etfet4o1',
-        conn_max_age=600)}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+# import dj_database_url
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgres://wzloqilyxdbbdd:6c9c9f91937e5bad238cb87ee5daf398f827121596fd4e7166abaebc36e8bf09@ec2-54-225-205-79.compute-1.amazonaws.com:5432/d7heq9etfet4o1',
+#         conn_max_age=600)}
 
 
 # Password validation
