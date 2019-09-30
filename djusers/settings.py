@@ -115,7 +115,7 @@ WSGI_APPLICATION = 'djusers.wsgi.application'
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://qcpfmiceazjtdn:6566462cda5958ea9ea51ea3f1d0149a767b79ec80f5378802567444c060c978@ec2-54-225-205-79.compute-1.amazonaws.com:5432/dd50qf9t2v9318',
+        default='postgres://wzloqilyxdbbdd:6c9c9f91937e5bad238cb87ee5daf398f827121596fd4e7166abaebc36e8bf09@ec2-54-225-205-79.compute-1.amazonaws.com:5432/d7heq9etfet4o1',
         conn_max_age=600)}
 
 
