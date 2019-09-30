@@ -30,7 +30,7 @@ from .forms import (
     RestorePasswordForm, RestorePasswordViaEmailOrUsernameForm, RemindUsernameForm,
     ResendActivationCodeForm, ResendActivationCodeViaEmailForm, ChangeProfileForm, ChangeEmailForm,
 )
-from .models import Activation, Userprofile
+from .models import Userprofile
 
 class GuestOnlyView(View):
     def dispatch(self, request, *args, **kwargs):
