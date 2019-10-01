@@ -28,22 +28,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-
     'ckeditor',
     'ckeditor_uploader',
     'core',
-    'bootstrap4',
 
     'accounts',
     'contact',
     'blog',
     'payu',
     'order',
+    'bootstrap4',
     ]
 
 PAYU_INFO = {'merchant_key': "RfLhqZQ5",
              'merchant_salt': "R57ivFJigr",
-             'payment_url': 'https://secure.payu.in/_payment'
+             'payment_url': 'https://secure.payu.in/_payment',
              # 'payment_url': 'https://sandboxsecure.payu.in/_payment',
 
 }
