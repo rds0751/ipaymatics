@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'core',
 
-    'accounts',
+    'accounts.apps.AccountsConfig',
+
     'contact',
     'blog',
     'payu',
